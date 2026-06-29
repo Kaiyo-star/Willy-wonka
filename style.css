@@ -1,0 +1,190 @@
+/* RESET & BASE STYLES */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  /* RUANG BACKGROUND: Gantian imej latar belakang tirai anda di sini */
+  background: url("img wonka/party!.png") no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  min-height: 100vh;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  position: sticky;
+  top: 0;
+  background: rgba(60, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 3px solid #f6e7c1;
+  z-index: 1000;
+}
+
+.logo {
+  font-family: "Cinzel", serif;
+  font-size: 35px;
+  font-weight: bold;
+  color: #f6e7c1;
+  text-shadow:
+    0 0 10px white,
+    0 0 20px gold,
+    0 0 30px gold;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-family: "Cinzel", serif;
+  font-size: 20px;
+  color: #f6e7c1;
+  transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #fff;
+  text-shadow:
+    0 0 10px white,
+    0 0 20px gold,
+    0 0 30px gold;
+}
+
+/* MAIN CONTENT */
+.container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.main-title {
+  font-family: "Cinzel", serif;
+  font-size: 3.5rem;
+  color: #f6e7c1;
+  text-transform: uppercase;
+  margin-bottom: 60px;
+  letter-spacing: 2px;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
+}
+
+/* CARDS GRID */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+  justify-content: center;
+  align-items: start;
+}
+
+/* INDIVIDUAL CARD */
+.card {
+  background: rgba(
+    145,
+    17,
+    17,
+    0.9
+  ); /* Warna merah gelap berdasarkan gambar poster */
+  border: 3px dashed #f6e7c1; /* Garis putus-putus putih/emas di sekeliling */
+  border-radius: 10px;
+  padding: 30px 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+}
+
+/* MOCK TV FRAME */
+.tv-frame {
+  background: #a70000;
+  border: 5px solid #5a0000;
+  border-radius: 12px;
+  padding: 12px 45px 12px 12px; /* Memberi ruang di sebelah kanan untuk butang dial */
+  position: relative;
+  margin-bottom: 25px;
+  box-shadow:
+    inset 0 0 15px rgba(0, 0, 0, 0.8),
+    0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* TV Dial Knobs (Hiasan tombol bulat di sebelah kanan skrin TV) */
+.tv-frame::after {
+  content: "";
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 60px;
+  /* Membuat corak dua tombol bulat hitam */
+  background:
+    radial-gradient(circle, #222 8px, transparent 9px) no-repeat center top,
+    radial-gradient(circle, #222 8px, transparent 9px) no-repeat center bottom;
+  background-size: 20px 25px;
+}
+
+/* RUANG GAMBAR WONKA */
+.tv-frame img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 4px solid #1a1a1a;
+  display: block;
+}
+
+/* CARD TEXT CONTENT */
+.card-title {
+  font-family: "Cinzel", serif;
+  font-size: 1.7rem;
+  color: #f6e7c1;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.card-list {
+  text-align: left;
+  list-style-position: outside;
+  padding-left: 20px;
+}
+
+.card-list li {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 12px;
+  color: #f0f0f0;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+  }
+  .nav-links {
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .main-title {
+    font-size: 2.3rem;
+  }
+}

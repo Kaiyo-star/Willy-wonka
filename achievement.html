@@ -1,0 +1,343 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Willy Wonka</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        background: #250000;
+        font-family: "Times New Roman", serif;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .page {
+        position: relative;
+        width: 1366px;
+        height: 768px;
+      }
+
+      /* NAVBAR */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 62px;
+        z-index: 30;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 50px;
+        background: rgba(60, 0, 0, 0.4);
+        backdrop-filter: blur(10px);
+        border-bottom: 2px solid gold;
+      }
+      .logo {
+        font-family: "Cinzel", serif;
+        font-size: 35px;
+        font-weight: bold;
+        color: #f6e7c1;
+        text-shadow:
+          0 0 10px white,
+          0 0 20px gold,
+          0 0 30px gold;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        font-family: "Cinzel", serif;
+        font-size: 20px;
+        color: #f6e7c1;
+        transition: 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: #fff;
+        text-shadow:
+          0 0 10px white,
+          0 0 20px gold,
+          0 0 30px gold;
+      }
+
+      .poster {
+        position: relative;
+        width: 1366px;
+        height: 768px;
+        overflow: hidden;
+        background: #6d0b09;
+        color: white;
+      }
+
+      .top-line {
+        position: absolute;
+        top: 28px;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: white;
+        z-index: 4;
+      }
+
+      .bottom-line {
+        position: absolute;
+        bottom: 38px;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: white;
+        z-index: 4;
+      }
+
+      .middle-line {
+        position: absolute;
+        top: 0;
+        left: 683px;
+        width: 4px;
+        height: 100%;
+        background: white;
+        z-index: 4;
+      }
+
+      .side-left,
+      .side-right {
+        position: absolute;
+        top: 62px;
+        width: 250px;
+        height: 706px;
+        background: #c00000;
+        z-index: 8;
+      }
+      .side-left {
+        left: 0;
+        border-top-right-radius: 100% 50%;
+        border-bottom-right-radius: 100% 50%;
+      }
+      .side-right {
+        right: -31px;
+        border-top-left-radius: 100% 50%;
+        border-bottom-left-radius: 100% 50%;
+      }
+
+      .side-title {
+        position: absolute;
+        top: 50%;
+        width: 520px;
+        color: #fff8e7;
+        font-size: 54px;
+        line-height: 0.88;
+        font-weight: bold;
+        text-align: center;
+        text-shadow:
+          0 0 4px white,
+          0 0 12px #ffd39a,
+          0 0 22px #ff5a00;
+      }
+
+      .side-left .side-title {
+        left: -135px;
+        transform: translateY(-50%) rotate(-90deg);
+      }
+
+      .side-right .side-title {
+        right: -135px;
+        transform: translateY(-50%) rotate(90deg);
+      }
+
+      .photo-box {
+        position: absolute;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .photo-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* KOTAK GAMBAR */
+      .top-left {
+        left: 213px;
+        top: 61px;
+        width: 452px;
+        height: 292px;
+      }
+
+      .top-right {
+        left: 706px;
+        top: 62px;
+        width: 448px;
+        height: 287px;
+      }
+
+      .bottom-left {
+        left: 210px;
+        top: 421px;
+        width: 455px;
+        height: 292px;
+      }
+
+      .bottom-right {
+        left: 710px;
+        top: 421px;
+        width: 440px;
+        height: 289px;
+      }
+
+      /* TEXT DI ATAS GAMBAR */
+      .text-box {
+        position: absolute;
+        z-index: 3;
+        overflow: hidden;
+        color: #fff4df;
+        text-shadow: 0 0 2px black;
+      }
+
+      .text-box ul {
+        padding-left: 35px;
+      }
+
+      .text-box li {
+        margin-bottom: 6px;
+      }
+
+      /* Jangan ubah bahagian position ini */
+      .text-top-left {
+        left: 236px;
+        top: 69px;
+        width: 410px;
+        height: 270px;
+        font-size: 36px;
+        line-height: 1.06;
+      }
+
+      .text-top-right {
+        left: 713px;
+        top: 75px;
+        width: 410px;
+        height: 260px;
+        font-size: 34px;
+        line-height: 1.07;
+      }
+
+      .text-bottom-left {
+        left: 226px;
+        top: 429px;
+        width: 415px;
+        height: 270px;
+        font-size: 34px;
+        line-height: 1.02;
+      }
+
+      .text-bottom-right {
+        left: 728px;
+        top: 439px;
+        width: 390px;
+        height: 260px;
+        font-size: 33px;
+        line-height: 1.04;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page">
+      <nav class="navbar">
+        <div class="logo">WONKA</div>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="background.html">Background</a></li>
+          <li><a href="personality.html">Personality</a></li>
+          <li><a href="achievement.html">Achievement</a></li>
+          <li><a href="relationship.html">Relationship</a></li>
+        </ul>
+      </nav>
+
+      <div class="poster">
+        <div class="top-line"></div>
+        <div class="bottom-line"></div>
+        <div class="middle-line"></div>
+
+        <div class="side-left">
+          <div class="side-title">WILLY WONKA<br />ACHIEVEMENTS</div>
+        </div>
+
+        <div class="side-right">
+          <div class="side-title">WILLY WONKA<br />ABILITIES</div>
+        </div>
+
+        <div class="photo-box top-left">
+          <img
+            src="img wonka/Timothée Chalamet as Willy Wonka in the movie Wonka (2023).jpg"
+            alt=""
+          />
+        </div>
+
+        <div class="photo-box top-right">
+          <img src="img wonka/WONKA _ 2023 _ icons.jpg" alt="" />
+        </div>
+
+        <div class="photo-box bottom-left">
+          <img src="img wonka/☆ timothée chalamet ; wonka (2023).jpg" alt="" />
+        </div>
+
+        <div class="photo-box bottom-right">
+          <img src="img wonka/𝐖𝐢𝐥𝐥𝐲 𝐖𝐨𝐧𝐤𝐚 _ 𝐈𝐜𝐨𝐧.jpg" alt="" />
+        </div>
+
+        <div class="text-box text-top-left">
+          <ul>
+            <li>Defeated the powerful Chocolate Cartel</li>
+            <li>Escaped multiple traps and schemes set against him</li>
+            <li>Earned the trust and loyalty of his friends</li>
+          </ul>
+        </div>
+
+        <div class="text-box text-top-right">
+          <ul>
+            <li>Extraordinary chocolate-making skills</li>
+            <li>Creative candy inventor with imaginative recipes</li>
+            <li>Able to create magical chocolates with unique effects</li>
+          </ul>
+        </div>
+
+        <div class="text-box text-bottom-left">
+          <ul>
+            <li>Inspired people with joy and imagination</li>
+            <li>Built a reputation through creativity rather than wealth</li>
+            <li>Proved that kindness and perseverance can overcome greed</li>
+          </ul>
+        </div>
+
+        <div class="text-box text-bottom-right">
+          <ul>
+            <li>Skilled in problem-solving and quick thinking</li>
+            <li>Highly optimistic and determined despite hardships</li>
+            <li>Strong people skills and ability to build friendships</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
