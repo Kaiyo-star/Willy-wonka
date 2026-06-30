@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Willy Wonka Personality</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* BODY */
+      body {
+        min-height: 100vh;
+        background-image: url("img/banner_ww.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        font-family: Georgia, serif;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.35);
+        z-index: -1;
+      }
+
+      /* NAVBAR */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 50px;
+        position: sticky;
+        top: 0;
+        background: rgba(60, 0, 0, 0.4);
+        backdrop-filter: blur(10px);
+        border-bottom: 2px solid gold;
+      }
+
+      .logo {
+        font-family: "Cinzel", serif;
+        font-size: 35px;
+        font-weight: bold;
+        color: #f6e7c1;
+        text-shadow:
+          0 0 10px white,
+          0 0 20px gold,
+          0 0 30px gold;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        font-family: "Cinzel", serif;
+        font-size: 20px;
+        color: #f6e7c1;
+        transition: 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: #fff;
+        text-shadow:
+          0 0 10px white,
+          0 0 20px gold,
+          0 0 30px gold;
+      }
+
+      /* CONTAINER */
+      .container {
+        width: 90%;
+        margin: 50px auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+      }
+
+      /* CARD */
+      .card {
+        width: 350px;
+        background: #9d0000;
+        text-decoration: none;
+        color: white;
+        border: 4px solid #f5d6d6;
+        border-radius: 15px;
+        padding: 20px;
+        transition: 0.3s ease;
+      }
+
+      .card:hover {
+        transform: scale(1.05);
+      }
+
+      .card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border: 4px solid white;
+      }
+
+      .card h2 {
+        text-align: center;
+        margin: 15px 0;
+        font-family: "Cinzel", serif;
+        font-size: 26px;
+        color: #f5deb3;
+        text-shadow:
+          0 0 10px #fff,
+          0 0 20px #ffd700;
+      }
+
+      .card p {
+        font-size: 18px;
+        line-height: 1.5;
+      }
+
+      /* BUTTON */
+      .explore-btn {
+        background: none;
+        border: none;
+        border-bottom: 1px solid #e0d0c0;
+        color: white;
+        font-size: 17px;
+        font-family: Georgia, serif;
+        cursor: pointer;
+        padding: 5px 10px;
+        transition: 0.3s;
+        text-shadow:
+          0 0 10px white,
+          0 0 20px gold;
+      }
+
+      .explore-btn:hover {
+        color: #ffd700;
+        border-bottom: 1px solid #ffd700;
+        transform: translateY(-2px);
+      }
+
+      .explore-btn::after {
+        content: " →";
+      }
+      .popup {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(8px);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        opacity: 0;
+        visibility: hidden;
+
+        transition: 0.35s;
+
+        z-index: 9999;
+      }
+
+      .popup.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .popup-content {
+        width: min(850px, 90%);
+        max-height: 90vh;
+
+        overflow: auto;
+
+        background: #8f0000;
+
+        border: 4px solid #fff;
+
+        border-radius: 20px;
+
+        padding: 25px;
+
+        color: white;
+
+        transform: scale(0.8);
+
+        transition: 0.35s;
+      }
+
+      .popup.active .popup-content {
+        transform: scale(1);
+      }
+
+      .popup-content img {
+        width: 100%;
+
+        border-radius: 10px;
+
+        margin-bottom: 20px;
+      }
+
+      .popup-content h2 {
+        font-family: "Cinzel", serif;
+
+        margin-bottom: 15px;
+
+        text-align: center;
+
+        color: #ffe39c;
+      }
+
+      .popup-content p {
+        line-height: 1.8;
+
+        font-size: 18px;
+      }
+
+      .close-btn {
+        position: absolute;
+
+        right: 30px;
+
+        top: 25px;
+
+        width: 45px;
+
+        height: 45px;
+
+        border: none;
+
+        border-radius: 50%;
+
+        background: white;
+
+        font-size: 30px;
+
+        cursor: pointer;
+      }
+
+      .close-btn:hover {
+        transform: rotate(90deg);
+      }
+
+      @media (max-width: 768px) {
+        .popup-content {
+          width: 95%;
+
+          padding: 20px;
+        }
+
+        .popup-content p {
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="logo">WONKA</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="background.html">Background</a></li>
+        <li><a href="personality.html">Personality</a></li>
+        <li><a href="achievement.html">Achievement</a></li>
+        <li><a href="relationship.html">Relationship</a></li>
+      </ul>
+    </nav>
+
+    <section class="container">
+      <!-- CARD 1 -->
+
+      <div
+        class="card"
+        data-title="Childhood"
+        data-image="img/gambar_ww_1.png"
+        data-description="Willy Wonka grew up with a strict father who believed that candy was
+          harmful to children's teeth. Because of this, he was forbidden from
+          eating sweets, which made him even more curious about chocolate and
+          confectionery. His childhood experiences inspired his creativity and
+          motivated him to pursue his dream of making extraordinary candies."
+      >
+        <img src="img/gambar_ww_1.png" alt="Childhood" />
+
+        <h2>Childhood</h2>
+
+        <p>Willy Wonkasad kid.</p>
+      </div>
+
+      <!-- CARD 2 -->
+
+      <div
+        class="card"
+        data-title="Parents & Family"
+        data-image="img/gambar_ww_2.png"
+        data-description=" Wonka's father was a dentist who enforced strict rules against candy
+          in their home. This created tension between father and son, eventually
+          leading Willy Wonka to leave home and follow his passion. Despite
+          their difficult relationship, they later reconciled and rebuilt their
+          family bond."
+      >
+        <img src="img/gambar_ww_2.png" alt="Parents" />
+
+        <h2>Parents & Family</h2>
+
+        <p>Wonka's strict parent.</p>
+      </div>
+
+      <!-- CARD 3 -->
+
+      <div
+        class="card"
+        data-title="Career"
+        data-image="img/gambar_ww_3.png"
+        data-description="  Determined to achieve his dream, Willy Wonka traveled around the world
+          to learn about different ingredients and candy-making techniques.
+          After gaining experience, he founded the famous Wonka Chocolate
+          Factory, where he invented unique chocolates and sweets unlike
+          anything else in the world."
+      >
+        <img src="img/gambar_ww_3.png" alt="Career" />
+
+        <h2>Career</h2>
+
+        <p>wonka has dream.</p>
+      </div>
+
+      <div
+        class="card"
+        data-title="Chocolate Factory"
+        data-image="img/gambar_ww_4.png"
+        data-description="The Wonka Chocolate Factory is a place filled with imagination and
+          innovation. It features remarkable attractions such as a chocolate
+          river, edible plants, and advanced candy-making inventions. The
+          factory is operated with the help of the Oompa Loompas, who assist
+          Wonka in producing his extraordinary creations."
+      >
+        <img src="img/gambar_ww_4.png" alt="Chocolate Factory" />
+
+        <h2>Chocolate Factory</h2>
+
+        <p>wonka fav food.</p>
+      </div>
+
+      <!-- CARD 5 -->
+
+      <div
+        class="card"
+        data-title="Legacy & Influence"
+        data-image="img/gambar_ww_5.png"
+        data-description="As he grew older, Willy Wonka searched for someone worthy of continuing his life's work. Through the Golden Ticket contest, he selected Charlie Bucket as the future owner of the factory because of Charlie's honesty, kindness, and integrity. Wonka's story continues to inspire people to dream big, embrace creativity, and value family relationships."
+      >
+        <img src="img/gambar_ww_5.png" alt="Legacy & Influence" />
+
+        <h2>Legacy & Influence</h2>
+
+        <p>wonka has influence</p>
+      </div>
+    </section>
+
+    <!-- POPUP -->
+
+    <div class="popup" id="popup">
+      <div class="popup-content">
+        <button class="close-btn">&times;</button>
+
+        <img id="popupImage" src="" alt="" />
+
+        <h2 id="popupTitle"></h2>
+
+        <p id="popupDescription"></p>
+      </div>
+    </div>
+
+    <!-- JavaScript letak sebelum </body> -->
+    <!-- Nanti paste JS yang saya bagi sebelum ini di sini -->
+    <script>
+      const cards = document.querySelectorAll(".card");
+
+      const popup = document.getElementById("popup");
+
+      const popupTitle = document.getElementById("popupTitle");
+
+      const popupImage = document.getElementById("popupImage");
+
+      const popupDescription = document.getElementById("popupDescription");
+
+      const closeBtn = document.querySelector(".close-btn");
+
+      cards.forEach((card) => {
+        card.addEventListener("click", () => {
+          popup.classList.add("active");
+
+          popupTitle.textContent = card.dataset.title;
+
+          popupImage.src = card.dataset.image;
+
+          popupDescription.textContent = card.dataset.description;
+
+          document.body.style.overflow = "hidden";
+        });
+      });
+
+      function closePopup() {
+        popup.classList.remove("active");
+
+        document.body.style.overflow = "";
+      }
+
+      closeBtn.onclick = closePopup;
+
+      popup.onclick = (e) => {
+        if (e.target === popup) {
+          closePopup();
+        }
+      };
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closePopup();
+        }
+      });
+    </script>
+  </body>
+</html>
